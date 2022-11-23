@@ -1,0 +1,80 @@
+CRUD OPERATION 
+
+
+test> show dbs;
+admin            48.00 KiB
+config           72.00 KiB
+first_data_base  72.00 KiB
+local            72.00 KiB
+
+test> use first_data_base
+switched to db first_data_base
+
+first_data_base> show collections
+template
+
+first_data_base> db
+first_data_base
+
+-----------------------------------------CREATE-------------------------------
+---------db.<collectionname>.insert({})-----db.<collectionname>.insertOne({})--
+----------------------------db.<collectionname>.insertMany([{} , {}])--------
+
+first_data_base> db.template.insert({'name':'shivam',})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("6376fb8313299dc634f0f04d") }
+}
+
+first_data_base> db.template.find()
+[
+  {
+    _id: ObjectId("62e2d3540c444284c4a2b168"),
+    title01: 'NAME PLEASE',
+    title02: 'ADDRESS PLEASE',
+    LIST: [ 'SHIVAM', 'SONU' ]
+  },
+  {
+    _id: ObjectId("62e2d4d90c444284c4a2b169"),
+    title03: 'NAME PLEASE',
+    title04: 'ADDRESS PLEASE'
+  },
+  { _id: ObjectId("6376fb8313299dc634f0f04d"), name: 'shivam' }
+]
+first_data_base> db.template.find().pretty()
+[
+  {
+    _id: ObjectId("62e2d3540c444284c4a2b168"),
+    title01: 'NAME PLEASE',
+    title02: 'ADDRESS PLEASE',
+    LIST: [ 'SHIVAM', 'SONU' ]
+  },
+  {
+    _id: ObjectId("62e2d4d90c444284c4a2b169"),
+    title03: 'NAME PLEASE',
+    title04: 'ADDRESS PLEASE'
+  },
+  { _id: ObjectId("6376fb8313299dc634f0f04d"), name: 'shivam' }
+]
+
+--------------------------------READ ----------------------------------
+----------db.<collectionname>.find()                    show all doc
+----------db.<collectionname>.find().limit(2)           show first two doc
+----------db.<collectionname>.find({name:'shivam'})     read by key and value
+----------db.<collectionname>.find().count()		  Count the number of rows in the output
+
+or 
+----------db.<collectionname>.find({name:'shivam'}).limit(1)    read by key and value and print 1 value only
+
+--------------------------------------------------------------------------------------------
+---------------------------UPDATE------------------
+-------db.<collectionname>.updateOne(<filter>,<update>)       ---for one upd.
+-------db.<collectionname>.update(<filter>,<update>)		---for many update
+
+db.<collectionname>.updateOne({title01:'NAME PLEASE'},{$set: {title02:'davkhar nagar'}} 
+
+--------------------------DELETE------------------
+-------db.<collectionname>.deleteMany({})              delete collection
+-------db.<collectionname>.remove({name: 'shivam'})        remove row
+

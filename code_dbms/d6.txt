@@ -1,0 +1,42 @@
+create table o_rollcall(roll no int,name varchar(20), address varchar(20));
+create table n_rollcall(roll no int,name varchar(20), address varchar(20));
+
+insert into o_rollcall values('1', 'Siddhi", "Jalgaon");
+insert into o_rollcall values('2', 'Swara', 'Nashik');
+insert into o_rollcall values('3', 'Sakshi' Pune');
+insert into o_rollcall values('4','Jitesh, Mumbai);
+insert into o_rollcall values('5', 'Yadnesh, Dhule');
+
+
+
+delimiter //
+create procedure p3(in r1 int)
+begin
+declare r2 int;
+declare exit loop boolean;
+declare cl cursor for select roll no from o_rollcall
+where roll_no>rl;
+declare continue handler for not found set exit_loop=true;
+open cl;
+e_loop:loop
+fetch cl into r2;
+if not exists (select from n rollcall where roll_no=r2) 
+then insert into n_rollcall select from o_rollcall where
+roll_no-r2;
+end if;
+if exit loop
+then close c1;
+leave e_loop;
+end if;
+end loop e_loop;
+end
+//
+
+call p3(3);
+select from n_rollcall;
+call p3(0);
+select from n_rollcall;
+insert into o_rollcall values (6, Aditya', 'Akola");
+where
+call p3(4);
+select from n_rollcall;
