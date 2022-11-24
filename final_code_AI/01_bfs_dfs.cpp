@@ -61,30 +61,29 @@ struct node{
         left = right = NULL;
     }
 };
-void dfs(node *root){
-    queue<node *>q;
-    q.push(root);
-    while (q.empty()!= true){
-        node *temp = q.front();
-        q.pop();
-        cout<<temp->data<<" ";
-        if (temp->left){
-            q.push(temp->left);
-        }
-        if (temp->right){
-            q.push(temp->right);
-        }
-        
-    }
-    
-}
-void bfs(struct node *node){
+void dfs(struct node *node){
     if(node == NULL){
         return ;
     }
     dfs(node->left);
     cout<<node->data<<" ";
     dfs(node->right);
+}
+void bfs(node *root){
+    queue<node *>q;
+    q.push(root);
+    while (q.empty()!= true){
+        node *temp = q.front();
+        q.pop();
+        cout<<temp->data<<" ";
+        if (temp->left)
+        {
+            q.push(temp->left);
+        }
+        if(temp->right){
+            q.push(temp->right);
+        }
+    }
 }
 int main(){
     struct node *root = new node(1);
